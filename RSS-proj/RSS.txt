@@ -1,0 +1,57 @@
+database
+
+	comic name
+
+	latest link
+
+	title for latest link
+
+	last check for update
+
+	link last updated date
+
+python
+	
+	grabs rss page
+
+	uses threading for updates as there are no race conditions
+
+	parses for:
+
+		Comic title(once)
+
+		lastBuildDate(periodically)
+
+		latest link(periodically)
+
+	if Last build date != last check for update
+
+		change last checked
+
+		check for update
+
+		if update
+
+			change link last updated date
+
+			change latest link
+
+			change latest link title
+
+	else
+
+		pass
+
+web page
+
+	use php to fetch all database entries
+
+		link obviously will be a link
+
+	possibly also will be front end for adding and deleting feeds
+
+	maybe change format (number of links displayed) based on news
+ 			or comic
+
+	maybe shorten link if x long and have original link as
+ 			mouseover

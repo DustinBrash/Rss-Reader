@@ -1,0 +1,18 @@
+requires: urllib2, MySQLdb, re?
+
+Read object:
+
+	just reads source from supplied link
+
+Initialize object:
+
+	reads title of feed and updates db accordingly
+Update object:
+
+	checks lastBuildDate for recent update and updates accordingly
+
+
+Initialize and Update inherit from Read
+
+Initialize uses an Update object to populate db entry
+
