@@ -1,12 +1,15 @@
 import urllib2, MySQLdb
 from bs4 import BeautifulSoup
 
+"""Updates comic entries in db iff last build date and link has changed"""
+
 def update_comic(url):
     page = read(url)    
     last_build_date = page.channel.lastBuildDate.string
 #    build_date_from_db = "TEMP"
     comic_title = master_tag.item.title.string
     last_link = master_tag.item.link.string
+#    link_from_db = "TEMP"
 #    link_updated = "NOW"
 #    last_update_check = "NOW"
 
