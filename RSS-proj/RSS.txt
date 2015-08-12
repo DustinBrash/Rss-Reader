@@ -20,7 +20,7 @@ python
 
 		Comic title(once)
 
-		lastBuildDate(periodically)
+		lastBuildDate or item's pubDate(periodically)
 
 		latest link(periodically)
 
