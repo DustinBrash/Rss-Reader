@@ -7,16 +7,18 @@
     Eventually change behavior to archive last few comics
 """
 
-import urllib2, sqlite3, datetime
-from bs4 import BeautifulSoup
+import sqlite3, datetime, feed.feed
+
 
 """Updates comic entries in db iff last build date and link has changed"""
 
 def update_comic(url):
 #   initialize database access and web page source in BeautifulSoup
-    master_tag, comic_cursor, connection = setup(url, "comic.db")
+#   Different rss feeds use different conventions. Make some classes
+#   to work with this
+    feed, comic_cursor, connection = setup(url, "comic.db")
 #   use the title to check for changes
-    item = master_tag.item
+    item = feed.get_item_head()
     comic_title = item.title.string
     comic_cursor.execute("""SELECT last_build_date FROM
         comics WHERE title = ?""", (comic_title,))
@@ -40,8 +42,8 @@ def update_comic(url):
     connection.close()
 
 def add_comic(url):
-    master_tag, cursor, connection = setup(url, "comic.db")
-    series_title = master_tag.title.string
+    feed, cursor, connection = setup(url, "comic.db")
+    series_title = feed.master_tag.title.string
 #   check for comic title in DB, add elements
     cursor.execute("""SELECT series_title FROM comics""")
 #   Does fetchall return a tuple consisting of just strings
@@ -50,7 +52,7 @@ def add_comic(url):
     while not found and (row = cursor.fetchone()) is not None:
         found = series title is row[0]
     if not found:
-        item = master_tag.item
+        item = feed.get_item_head()
         connection.execute("""INSERT INTO comics (SeriesTitle, LastComic,
             LastComicLink, LinkUpdatedDate, LastUpdateCheck)
             VALUES (?, ?, ?, ?, ?)""", (series_title,
@@ -58,16 +60,9 @@ def add_comic(url):
                 datetime.now(), datetime.now()))
         connection.commit()
     connection.close()
-    
-"""Reads a supplied URL, in this case the
-    source code of the RSS feed is needed
-    as a Soup"""
-def read(url):
-    return BeautifulSoup(urllib2.urlopen(url), 'xml')
 
 def setup(url, database_name):
-    page = read(url)
-    master_tag = page.rss.channel
+    feed = feed(url) 
     db = sqlite3.connect(database_name)
     cursor = comic_db.cursor()
-    return master_tag, cursor, db
+    return feed, cursor, db
