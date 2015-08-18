@@ -1,3 +1,6 @@
-div.entry{
+div{
 	/* css for rss entries go here */
+	border-width: medium;
+	border-style: solid
+	padding: 10px;
 }

@@ -1,10 +1,16 @@
 <html>
  <head>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
   <title>RSS Feed for Comics</title>
  </head>
  <body>
   <h1>This webpage is used to keep track of all of the comics that you follow.</h1>
   {% for entry in entries %}
-  <div class="entry"><--! loop over entries here. dunno how to present, though--></div>
+  <div class="title"><!-- expand on entry so this has same values --><h1>{{entry.title}}</h1>
+  </div>
+  <div class="entry"><!-- loop over entries here.-->   <p>{{entry.title}}: {{entry.description}}</p>
+   <p>Comic can be found <a href={{entry.link}}>here</a>.</p>
+  </div>
+  {% endfor %}
  </body>
 </html>
