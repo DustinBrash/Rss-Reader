@@ -1,6 +1,15 @@
-div{
+div {
 	/* css for rss entries go here */
 	border-width: medium;
-	border-style: solid
-	padding: 10px;
+	border-style: solid;
+	padding-left: 5px;
 }
+
+div.entry {
+	margin-bottom: 25px;
+}
+
+div.title {
+	line-height: 0;
+}
+
