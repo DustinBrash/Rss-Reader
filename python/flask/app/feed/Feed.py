@@ -4,15 +4,14 @@ from bs4 import BeautifulSoup
 
 class Feed():
 
-    def __init__(self, url, feed_type="xml"):
-        try:
-            f = urllib2.urlopen(url)
-        except urllib2.HTTPError, e:
-            print e.fp.read()
-        #f = urllib2.urlopen(url)
-        #page = BeautifulSoup(urllib2.urlopen(url), feed_type)
-        page = BeautifulSoup(f, feed_type)
-        self.title = page.find("title")
+    def __init__(self, url,):
+	request = urllib2.Request(url)
+        opener = urllib2.build_opener()
+	request.add_header('User-Agent', "Chrome/44.0.2403.155" + 
+		"+Rss Subscription Feed")
+	f = opener.open(request).read()
+	page = BeautifulSoup(f)
+        self.title = page.find("title").string
         items = page(["item", "entry"], limit = 5)
         self.entries = [Entry(item) for item in items]
 

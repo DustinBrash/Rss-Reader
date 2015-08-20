@@ -11,9 +11,11 @@ def comic():
 	#title, description, link
 	entries = [{"title": "My Comic", "description" : "A Comic I Made Up Just Now", "link" : "httP://www.google.com"}]
 	entries = entries * 5
-	url_list = ["http://www.giantitp.com/comics/oots.rss" \
-                    , "http://www.questionablecontent.net/QCRSS.xml" \
-                    , "http://twokinds.keenspot.com/rss.php"]
+	url_list = [ "http://www.questionablecontent.net/QCRSS.xml" \
+		, "http://www.giantitp.com/comics/oots.rss" \
+		, "http://xkcd.com/rss.xml" \
+		, "http://twokinds.keenspot.com/rss.php" \
+		, "http://feeds.feedburner.com/AvasDemon?format=xml"]
+                    
 	feed_list = [Feed(url) for url in url_list] 
-	return render_template("comics.html", feed_title = feed_list[0].title, \
-                               entries = [x.get_last() for x in feed_list])
+	return render_template("comics.html", feeds = feed_list)
