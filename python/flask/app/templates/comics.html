@@ -1,18 +1,13 @@
-<html>
- <head>
-  <link rel="stylesheet" type="text/css" href="../static/style.css">
-  <title>RSS Feed for Comics</title>
- </head>
- <body>
-  <h1>This webpage is used to keep track of all of the comics that you follow.</h1>
-  {% for feed in feeds %}
-  <div class="title"><!-- expand on entry so this has same values --><h1>{{feed.title}}</h1>
-  </div>
-  {% for entry in feed.entries %}
-  <div class="entry"><!-- loop over entries here.-->   <p>{{entry.title}}: {{entry.description}}</p>
-   <p>Latest comic "{{entry.title}}" can be found <a href={{entry.link}}>here</a>.</p>
-  </div>
-  {% endfor %}
-  {% endfor %}
- </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>This webpage is used to keep track of all of the comics that you follow.</h1>
+{% for feed in feeds %}
+<div class="title"><!-- expand on entry so this has same values --><h1>{{feed.title}}</h1>
+</div>
+{% for entry in feed.entries %}
+<div class="entry"><!-- loop over entries here.-->   <p>{{entry.title}}: {{entry.description}}</p>
+ <p>Latest comic "{{entry.title}}" can be found <a href={{entry.link}}>here</a>.</p>
+</div>
+{% endfor %}
+{% endfor %}
+{% endblock %}
