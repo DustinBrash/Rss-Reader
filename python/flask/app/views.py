@@ -17,14 +17,14 @@ def comic():
 		, "http://feeds.feedburner.com/AvasDemon?format=xml"]
                     
     feed_list = [Feed(url) for url in url_list] 
-    return render_template("comics.html", feeds = feed_list)
+    return render_template("comics.html", title = "Comics", feeds = feed_list)
 
 @app.route('/login')
 def login():
     form = LoginForm()
-    return render_template('login.html', form = form)    
+    return render_template('login.html', title = "Login", form = form)    
 
 @app.route('/register')
 def register():
     form = RegisterForm()
-    return render_template('register.html', form = form)
+    return render_template('register.html', title = "Register", form = form)
