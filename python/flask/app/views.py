@@ -1,6 +1,5 @@
 from app import app
-from flask import render_template, flash, redirect
-from .forms import LoginForm, RegisterForm
+from flask import render_template
 from feed.Feed import Feed
 
 """Make sure that crawler starts from last link and
@@ -19,15 +18,3 @@ def comic():
     feed_list = [Feed(url) for url in url_list] 
     return render_template("comics.html", title = "Comics", feeds = feed_list)
 
-#Do rest of forms tutorial flask
-@app.route('/login', methods = ['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        return redirect('/comic')
-    return render_template('login.html', title = "Login", form = form)    
-
-@app.route('/register', methods = ['GET', 'POST'])
-def register():
-    form = RegisterForm()
-    return render_template('register.html', title = "Register", form = form)
