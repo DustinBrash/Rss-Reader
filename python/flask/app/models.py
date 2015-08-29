@@ -3,7 +3,7 @@ from werkzeug import generate_password_hash, check_password_hash
 import datetime
 
 class User(db.Model):
-    uid = db.Column(db.Integer, Primary_key = True)
+    uid = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(64), index = True)
     pwd_hash = db.Column(db.String(54))
     email = db.Column(db.String(120), unique = True)
@@ -21,8 +21,11 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.pwd_hash, password)
 
+    def __repr__(self):
+        return "<User %r>" % self.name
+
 class Comic(db.Model):
-    id = db.Column(db.Integer, Primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
     feed_link = db.Column(db.Text(), unique = True)
     last_updated = db.Column(db.String(128))
     last_checked = db.Column(db.DateTime())
