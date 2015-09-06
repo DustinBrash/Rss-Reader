@@ -10,6 +10,14 @@ from feed.Feed import Feed
 def comic():
     #title, description, link
     url_list = [ "http://www.questionablecontent.net/QCRSS.xml" \
+		, "http://dailyderp.tumblr.com/rss" \
+		, "http://www.nerdragecomic.com/feed.xml" \
+		, "http://chaoslife.findchaos.com/feed" \
+		, "http://lilmissrarity.com/rss" \
+		, "http://studentofthenight.tumblr.com/rss" \
+		, "http://www.alicegrove.com/rss" \
+		, "http://feeds.feedburner.com/rsspect/fJur?format=xml" \
+		, "http://www.smbc-comics.com/rss.php" \
 		, "http://www.giantitp.com/comics/oots.rss" \
 		, "http://xkcd.com/rss.xml" \
 		, "http://twokinds.keenspot.com/rss.php" \
