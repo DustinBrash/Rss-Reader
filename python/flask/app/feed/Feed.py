@@ -21,7 +21,7 @@ class Feed():
         #checked update every time
         #compare last_link, if diff update link and last_updated
         #actual check higher up
-        self.last_updated = datetime.utcnow()
+        self.last_updated = datetime.datetime.utcnow()
         self.last_checked = self.last_updated
         self.last_link = None if len(self.entries) == 0 else self.entries[0]
 
