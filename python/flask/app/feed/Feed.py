@@ -14,7 +14,7 @@ class Feed():
 		"+Rss Subscription Feed")
 	f = opener.open(request).read()
 	#pass source to BS for parsing
-	page = BeautifulSoup(f)
+	page = BeautifulSoup(f, "html.parser")
         self.title = page.find("title").string
         items = page(["item", "entry"], limit = 10)
         self.entries = [Entry(item) for item in items]
